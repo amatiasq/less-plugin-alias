@@ -1,11 +1,18 @@
-/* eslint-env node */
-var isProtocol = /:\/\//;
-var hasAlias = /^\w+:/;
-var hasStartSlash = /^\//;
-var hasEndSlash = /\/$/;
+/* eslint-env node, browser */
+(function(value) {
+  'use strict';
+  if (typeof module !== 'undefined')
+    module.exports = value;
+  else
+    window.lessAlias = value;
+})(function(maps) {
+  'use strict';
+  var isProtocol = /:\/\//;
+  var hasAlias = /^\w+:/;
+  var hasStartSlash = /^\//;
+  var hasEndSlash = /\/$/;
 
 
-module.exports = function(maps) {
   return {
     minVersion: [ 2, 0, 0 ],
 
@@ -45,9 +52,9 @@ module.exports = function(maps) {
       pluginManager.addFileManager(new AliasFileManager());
     },
   };
-};
 
 
-function identity(value) {
-  return value;
-}
+  function identity(value) {
+    return value;
+  }
+});
